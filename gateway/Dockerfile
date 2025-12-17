@@ -6,7 +6,7 @@ COPY ./src ./src
 RUN mvn clean package -DskipTests
 
 # Étape 2 : Création de l'image finale avec OpenJDK
-FROM openjdk:17
+FROM openjdk:17-jdk
 WORKDIR /app
 COPY --from=builder /app/target/*.jar gateway-service.jar
 ENTRYPOINT ["java", "-jar", "/app/gateway-service.jar"]
